@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<filename label="outputfileGriddedData">xxx_output_grid</filename>
+		<filename label="inputfile">xxx_input_ascii</filename>
+	</global>
+	<programme comment="grid.txt">
+		<Ascii2GriddedData>
+			<outputfileGriddedData link="outputfileGriddedData"/>
+			<inputfile link="inputfile"/>
+			<headerLines>0</headerLines>
+			<longitude>data0</longitude>
+			<latitude>data1</latitude>
+			<height>data2</height>
+			<area>data3</area>
+			<value>data4</value>
+			<value>data5</value>
+			<value>data6</value>
+			<value>data7</value>
+			<value>data8</value>
+			<sortPoints>0</sortPoints>
+			<computeArea>0</computeArea>
+			<R>6378137.0</R>
+			<inverseFlattening>298.2572221010</inverseFlattening>
+		</Ascii2GriddedData>
+	</programme>
+</groops>

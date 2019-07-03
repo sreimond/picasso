@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<time label="timeStart">xxx_mjd_time_start</time>
+		<time label="timeEnd">xxx_mjd_time_end</time>
+		<uint label="numberOfPoints">xxx_number_of_points</uint>
+		<filename label="inputfileGrid">xxx_grid_file</filename>
+		<filename label="outputfileNormalequationGraceDat">xxx_output_path_grace_{timeStart:%y-%m}-normals.dat</filename>
+		<filename label="outputfileNormalequationGraceTxt">xxx_output_path_grace_{timeStart:%y-%m}-normals.txt</filename>
+		<filename label="outputfileNormalequationRegularizedGraceTxt">xxx_output_path_grace_{timeStart:%y-%m}-normalsRegularized.txt</filename>
+		<filename label="outputfileSolutionGrace">xxx_output_path_grace_{timeStart:%y-%m}-x.txt</filename>
+		<filename label="outputfileSigmaxGrace">xxx_output_path_grace_{timeStart:%y-%m}-sigmax.txt</filename>
+		<filename label="outputfileNormalequationGoceDat">xxx_output_path_goce_{timeStart:%y-%m}-normals.dat</filename>
+		<filename label="outputfileNormalequationGoceTxt">xxx_output_path_goce_{timeStart:%y-%m}-normals.txt</filename>
+		<filename label="outputfileNormalequationRegularizedGoceTxt">xxx_output_path_goce_{timeStart:%y-%m}-normalsRegularized.txt</filename>
+		<filename label="outputfileSolutionGoce">xxx_output_path_goce_{timeStart:%y-%m}-x.txt</filename>
+		<filename label="outputfileSigmaxGoce">xxx_output_path_goce_{timeStart:%y-%m}-sigmax.txt</filename>
+		<filename label="outputfileNormalequationGraceGoceDat">xxx_output_path_grace_goce_{timeStart:%y-%m}-normals.dat</filename>
+		<filename label="outputfileNormalequationGraceGoceTxt">xxx_output_path_grace_goce_{timeStart:%y-%m}-normals.txt</filename>
+		<filename label="outputfileNormalequationRegularizedGraceGoceTxt">xxx_output_path_grace_goce_{timeStart:%y-%m}-normalsRegularized.txt</filename>
+		<filename label="outputfileSolutionGraceGoce">xxx_output_path_grace_goce_{timeStart:%y-%m}-x.txt</filename>
+		<filename label="outputfileSigmaxGraceGoce">xxx_output_path_grace_goce_{timeStart:%y-%m}-sigmax.txt</filename>
+		<filename label="groopsPath">xxx_groops_path</filename>
+		<gridType label="grid">
+			<file>
+				<inputfileGrid link="inputfileGrid"/>
+			</file>
+		</gridType>
+		<timeSeriesType label="intervalDaily">
+			<uniformSampling>
+				<timeStart link="timeStart"/>
+				<timeEnd link="timeEnd"/>
+				<sampling>1</sampling>
+			</uniformSampling>
+		</timeSeriesType>
+		<representationType label="representation">
+			<radialBasis>
+				<kernel>
+					<density>
+						<inputfileLoadingLoveNumber>{groopsPath}/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+					</density>
+				</kernel>
+				<grid link="grid"/>
+			</radialBasis>
+		</representationType>
+		<parameterSatelliteType label="accBias">
+			<accBias>
+				<estimateX>1</estimateX>
+				<estimateY>1</estimateY>
+				<estimateZ>1</estimateZ>
+				<temporal>
+					<splines>
+						<degree>3</degree>
+						<timeSeries>
+							<uniformSampling>
+								<timeStart link="timeStart"/>
+								<timeEnd link="timeEnd"/>
+								<sampling>6/24</sampling>
+							</uniformSampling>
+						</timeSeries>
+						<intervals>
+							<uniformSampling>
+								<timeStart link="timeStart"/>
+								<timeEnd link="timeEnd"/>
+								<sampling>1</sampling>
+							</uniformSampling>
+						</intervals>
+					</splines>
+				</temporal>
+				<perArc>0</perArc>
+			</accBias>
+		</parameterSatelliteType>
+		<parameterSatelliteType label="accScale1">
+			<accelerometerScaleFactors>
+				<inputfileAccelerometer>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_variational/grace1_accelerometer_{timeStart:%y-%m}.dat</inputfileAccelerometer>
+				<estimateX>1</estimateX>
+				<estimateY>1</estimateY>
+				<estimateZ>1</estimateZ>
+				<estimateCrossTalk>0</estimateCrossTalk>
+				<estimateRotation>0</estimateRotation>
+				<temporal>
+					<polynomial>
+						<polynomialDegree>0</polynomialDegree>
+						<interval link="intervalDaily"/>
+					</polynomial>
+				</temporal>
+				<perArc>0</perArc>
+			</accelerometerScaleFactors>
+		</parameterSatelliteType>
+		<parameterSatelliteType label="accScale2">
+			<accelerometerScaleFactors>
+				<inputfileAccelerometer>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_variational/grace2_accelerometer_{timeStart:%y-%m}.dat</inputfileAccelerometer>
+				<estimateX>1</estimateX>
+				<estimateY>1</estimateY>
+				<estimateZ>1</estimateZ>
+				<estimateCrossTalk>0</estimateCrossTalk>
+				<estimateRotation>0</estimateRotation>
+				<temporal>
+					<polynomial>
+						<polynomialDegree>0</polynomialDegree>
+						<interval link="intervalDaily"/>
+					</polynomial>
+				</temporal>
+				<perArc>0</perArc>
+			</accelerometerScaleFactors>
+		</parameterSatelliteType>
+		<observationType label="goce">
+			<gradiometer>
+				<rightHandSide>
+					<inputfileGradiometer>{groopsPath}/GOCE/satellite/goce_gradiometer_{timeStart:%y-%m}.dat</inputfileGradiometer>
+					<inputfileSatelliteGravity>{groopsPath}/GOCE/satellite/goce_referencefield_{timeStart:%y-%m}.dat</inputfileSatelliteGravity>
+				</rightHandSide>
+				<inputfileOrbit>{groopsPath}/GOCE/satellite/goce_orbit_{timeStart:%y-%m}.dat</inputfileOrbit>
+				<inputfileStarCamera>{groopsPath}/GOCE/satellite/goce_starCamera_{timeStart:%y-%m}.dat</inputfileStarCamera>
+				<earthRotation>
+					<itrf2010>
+                                                <inputfileEOP>{groopsPath}/models/EOP_08C04_IAU2000.xml</inputfileEOP>
+						<truncatedNutation>0</truncatedNutation>
+					</itrf2010>
+				</earthRotation>
+				<representation link="representation"/>
+				<useXX>1</useXX>
+				<useYY>1</useYY>
+				<useZZ>1</useZZ>
+				<useXY>0</useXY>
+				<useXZ>1</useXZ>
+				<useYZ>0</useYZ>
+				<gradiometerBias>
+					<polynomial>
+						<polynomialDegree>2</polynomialDegree>
+					</polynomial>
+				</gradiometerBias>
+				<covarianceSgg>
+					<sigma>1</sigma>
+					<inputfileSigmasPerArc>{groopsPath}/GOCE/satellite/arcSigmas_{timeStart:%y-%m}.txt</inputfileSigmasPerArc>
+					<inputfileCovarianceFunction>{groopsPath}/GOCE/satellite/covariance_{timeStart:%y-%m}.txt</inputfileCovarianceFunction>
+				</covarianceSgg>
+			</gradiometer>
+		</observationType>
+		<observationType label="grace">
+			<sstVariational>
+				<rightHandSide>
+					<inputfileSatelliteTracking>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace_satelliteTracking_{timeStart:%y-%m}.dat</inputfileSatelliteTracking>
+					<inputfileSatelliteTracking>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace_lightTime_{timeStart:%y-%m}.dat</inputfileSatelliteTracking>
+					<inputfileSatelliteTracking>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace_antCentr_{timeStart:%y-%m}.dat</inputfileSatelliteTracking>
+					<inputfileOrbit1>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace1_pod_{timeStart:%y-%m}.dat</inputfileOrbit1>
+					<inputfileOrbit2>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace2_pod_{timeStart:%y-%m}.dat</inputfileOrbit2>
+				</rightHandSide>
+				<sstType>
+					<rangeRate/>
+				</sstType>
+				<inputfileVariational1>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_variational/grace1_variational_{timeStart:%y-%m}.dat</inputfileVariational1>
+				<inputfileVariational2>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_variational/grace2_variational_{timeStart:%y-%m}.dat</inputfileVariational2>
+				<representation link="representation"/>
+				<parameter1 link="accScale1"/>
+				<parameter1 link="accBias"/>
+				<parameter2 link="accScale2"/>
+				<parameter2 link="accBias"/>
+				<parameterSst>
+					<antennaCenter/>
+				</parameterSst>
+				<integrationDegree>7</integrationDegree>
+				<interpolationDegree>7</interpolationDegree>
+				<covarianceSst>
+					<sigma>1</sigma>
+					<inputfileSigmasPerArc>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/arcSigmasSst_{timeStart:%y-%m}.txt</inputfileSigmasPerArc>
+					<inputfileCovarianceFunction>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/covarianceFuncSst_{timeStart:%y-%m}.txt</inputfileCovarianceFunction>
+				</covarianceSst>
+				<covariancePod1>
+					<sigma>2</sigma>
+					<inputfileSigmasPerArc>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/arcSigmasPod1_{timeStart:%y-%m}.txt</inputfileSigmasPerArc>
+					<inputfileCovarianceFunction>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/covarianceFuncPod1_{timeStart:%y-%m}.txt</inputfileCovarianceFunction>
+					<inputfileCovariancePodEpoch>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace1_pod3x3Cov_{timeStart:%y-%m}.dat</inputfileCovariancePodEpoch>
+				</covariancePod1>
+				<covariancePod2>
+					<sigma>2</sigma>
+					<inputfileSigmasPerArc>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/arcSigmasPod2_{timeStart:%y-%m}.txt</inputfileSigmasPerArc>
+					<inputfileCovarianceFunction>{groopsPath}/GRACE/preprocessing/{timeStart:%y-%m}/covarianceFuncPod2_{timeStart:%y-%m}.txt</inputfileCovarianceFunction>
+					<inputfileCovariancePodEpoch>{groopsPath}/GRACE/satellite/{timeStart:%y-%m}_shortArc/grace2_pod3x3Cov_{timeStart:%y-%m}.dat</inputfileCovariancePodEpoch>
+				</covariancePod2>
+			</sstVariational>
+		</observationType>
+	</global>
+	<programme comment="goce_{timeStart:%y-%m}-normals.txt">
+		<NormalsEliminate>
+			<outputfileNormalequation link="outputfileNormalequationGoceTxt"/>
+			<inputfileNormalequation link="outputfileNormalequationGoceDat"/>
+			<index link="numberOfPoints"/>
+			<count>0</count>
+			<onlyRemoving>0</onlyRemoving>
+			<outBlockSize>0</outBlockSize>
+		</NormalsEliminate>
+	</programme>
+	<programme comment="goce_{timeStart:%y-%m}-x.txt">
+		<NormalsSolverVCE>
+			<outputfileSolution link="outputfileSolutionGoce"/>
+			<outputfileSigmax link="outputfileSigmaxGoce"/>
+			<outputfileNormalequation link="outputfileNormalequationRegularizedGoceTxt"/>
+			<normalequation>
+				<file>
+					<inputfileNormalequation link="outputfileNormalequationGoceTxt"/>
+					<aprioriSigma>1.0</aprioriSigma>
+					<startIndex>0</startIndex>
+				</file>
+			</normalequation>
+			<normalequation>
+				<regularization>
+					<aprioriSigma>1.0</aprioriSigma>
+					<startIndex>0</startIndex>
+				</regularization>
+			</normalequation>
+			<rightHandSideNumberVCE>0</rightHandSideNumberVCE>
+			<normalsBlockSize>2048</normalsBlockSize>
+			<memorySizePerNodeInGByte>0</memorySizePerNodeInGByte>
+			<maxIterationCount>20</maxIterationCount>
+		</NormalsSolverVCE>
+	</programme>
+	<programme comment="grace_goce_{timeStart:%y-%m}-normals.dat">
+		<NormalsBuild>
+			<outputfileNormalequation link="outputfileNormalequationGraceGoceTxt"/>
+			<normalequation>
+				<file>
+					<inputfileNormalequation link="outputfileNormalequationGraceTxt"/>
+					<aprioriSigma>1</aprioriSigma>
+					<startIndex>0</startIndex>
+				</file>
+			</normalequation>
+			<normalequation>
+				<file>
+					<inputfileNormalequation link="outputfileNormalequationGoceTxt"/>
+					<aprioriSigma>1e12</aprioriSigma>
+					<startIndex>0</startIndex>
+				</file>
+			</normalequation>
+			<rightHandSideNumberVCE>0</rightHandSideNumberVCE>
+			<defaultNormalsBlockSize>2048</defaultNormalsBlockSize>
+			<memorySizePerNodeInGByte>0</memorySizePerNodeInGByte>
+		</NormalsBuild>
+	</programme>
+	<programme comment="grace_goce_{timeStart:%y-%m}-x.txt">
+		<NormalsSolverVCE>
+			<outputfileSolution link="outputfileSolutionGraceGoce"/>
+			<outputfileSigmax link="outputfileSigmaxGraceGoce"/>
+			<outputfileNormalequation link="outputfileNormalequationRegularizedGraceGoceTxt"/>
+			<normalequation>
+				<file>
+					<inputfileNormalequation link="outputfileNormalequationGraceGoceTxt"/>
+					<aprioriSigma>1.0</aprioriSigma>
+					<startIndex>0</startIndex>
+				</file>
+			</normalequation>
+			<normalequation disabled="1">
+				<regularization>
+					<aprioriSigma>1.0</aprioriSigma>
+					<startIndex>0</startIndex>
+				</regularization>
+			</normalequation>
+			<rightHandSideNumberVCE>0</rightHandSideNumberVCE>
+			<normalsBlockSize>2048</normalsBlockSize>
+			<memorySizePerNodeInGByte>0</memorySizePerNodeInGByte>
+			<maxIterationCount>20</maxIterationCount>
+		</NormalsSolverVCE>
+	</programme>
+</groops>

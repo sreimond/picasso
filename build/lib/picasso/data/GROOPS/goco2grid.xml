@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<filename label="groopsPath">xxx_groops_path</filename>
+		<filename label="inputfileGrid">xxx_grid_file</filename>
+		<filename label="outputfileGriddedData">xxx_output</filename>
+		<gridType label="grid">
+			<file>
+				<inputfileGrid link="inputfileGrid"/>
+			</file>
+		</gridType>
+		<kernelType label="kernel">
+			<waterHeight>
+				<density>1025</density>
+				<inputfileLoadingLoveNumber>{groopsPath}/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+			</waterHeight>
+		</kernelType>
+		<time label="timeStart">xxx_mjd_time_start</time>
+		<gravityfieldType label="gravityfield">
+			<timeSplines>
+				<inputfileTimeSplinesGravityfield>{groopsPath}/models/GOCO05s_AOD_reduced_trendAnnual_monthlyMean_2002to2018.dat</inputfileTimeSplinesGravityfield>
+				<minDegree>0</minDegree>
+				<factor>1.0</factor>
+			</timeSplines>
+		</gravityfieldType>
+	</global>
+	<programme comment="ICE6.txt">
+		<Gravityfield2GriddedData>
+			<outputfileGriddedData link="outputfileGriddedData"/>
+			<grid link="grid"/>
+			<kernel link="kernel"/>
+			<gravityfield link="gravityfield"/>
+			<convertToHarmonics>0</convertToHarmonics>
+			<time link="timeStart"/>
+			<R>6378137.0</R>
+			<inverseFlattening>298.2572221010</inverseFlattening>
+			<initRandom>0</initRandom>
+		</Gravityfield2GriddedData>
+	</programme>
+</groops>

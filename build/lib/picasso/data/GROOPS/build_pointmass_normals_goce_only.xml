@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<time label="timeStart">xxx_mjd_time_start</time>
+		<time label="timeEnd">xxx_mjd_time_end</time>
+		<uint label="numberOfPoints">xxx_number_of_points</uint>
+		<filename label="inputfileGrid">xxx_grid_file</filename>
+		<filename label="outputfileNormalequationGoceDat">xxx_output_path_goce_{timeStart:%y-%m}-normals.dat</filename>
+		<filename label="groopsPath">xxx_groops_path</filename>
+		<gridType label="grid">
+			<file>
+				<inputfileGrid link="inputfileGrid"/>
+			</file>
+		</gridType>
+		<timeSeriesType label="intervalDaily">
+			<uniformSampling>
+				<timeStart link="timeStart"/>
+				<timeEnd link="timeEnd"/>
+				<sampling>1</sampling>
+			</uniformSampling>
+		</timeSeriesType>
+		<representationType label="representation">
+			<radialBasis>
+				<kernel>
+					<density>
+						<inputfileLoadingLoveNumber>{groopsPath}/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+					</density>
+				</kernel>
+				<grid link="grid"/>
+			</radialBasis>
+		</representationType>
+		<observationType label="goce">
+			<gradiometer>
+				<rightHandSide>
+					<inputfileGradiometer>{groopsPath}/GOCE/satellite/goce_gradiometer_{timeStart:%y-%m}.dat</inputfileGradiometer>
+					<inputfileSatelliteGravity>{groopsPath}/GOCE/satellite/goce_referencefield_{timeStart:%y-%m}.dat</inputfileSatelliteGravity>
+				</rightHandSide>
+				<inputfileOrbit>{groopsPath}/GOCE/satellite/goce_orbit_{timeStart:%y-%m}.dat</inputfileOrbit>
+				<inputfileStarCamera>{groopsPath}/GOCE/satellite/goce_starCamera_{timeStart:%y-%m}.dat</inputfileStarCamera>
+				<earthRotation>
+					<itrf2010>
+						<inputfileEOP>{groopsPath}/models/EOP_08C04_IAU2000.xml</inputfileEOP>
+						<truncatedNutation>0</truncatedNutation>
+					</itrf2010>
+				</earthRotation>
+				<representation link="representation"/>
+				<useXX>1</useXX>
+				<useYY>1</useYY>
+				<useZZ>1</useZZ>
+				<useXY>0</useXY>
+				<useXZ>1</useXZ>
+				<useYZ>0</useYZ>
+				<gradiometerBias>
+					<polynomial>
+						<polynomialDegree>2</polynomialDegree>
+					</polynomial>
+				</gradiometerBias>
+				<covarianceSgg>
+					<sigma>1</sigma>
+					<inputfileSigmasPerArc>{groopsPath}/GOCE/satellite/arcSigmas_{timeStart:%y-%m}.txt</inputfileSigmasPerArc>
+					<inputfileCovarianceFunction>{groopsPath}/GOCE/satellite/covariance_{timeStart:%y-%m}.txt</inputfileCovarianceFunction>
+				</covarianceSgg>
+			</gradiometer>
+		</observationType>
+	</global>
+	<programme comment="goce_{timeStart:%y-%m}-normals.dat">
+		<NormalsBuild>
+			<outputfileNormalequation link="outputfileNormalequationGoceDat"/>
+			<normalequation>
+				<design>
+					<observation link="goce"/>
+					<aprioriSigma>1.0</aprioriSigma>
+					<startIndex>0</startIndex>
+				</design>
+			</normalequation>
+			<rightHandSideNumberVCE>0</rightHandSideNumberVCE>
+			<defaultNormalsBlockSize>0</defaultNormalsBlockSize>
+			<memorySizePerNodeInGByte>0</memorySizePerNodeInGByte>
+		</NormalsBuild>
+	</programme>
+</groops>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<uint label="gamma">xxx_gamma</uint>
+		<filename label="outputfileGrid">xxx_output_grid</filename>
+		<filename label="inputfilePolygon">xxx_polygon_file</filename>
+	</global>
+	<programme comment="outputfileGrid">
+		<Grid2File>
+			<outputfileGrid link="outputfileGrid"/>
+			<grid>
+				<reuter>
+					<gamma link="gamma"/>
+					<height>0.0</height>
+					<R>6378137.0</R>
+					<inverseFlattening>298.2572221010</inverseFlattening>
+					<border>
+						<polygon>
+							<inputfilePolygon link="inputfilePolygon"/>
+							<exclude>0</exclude>
+						</polygon>
+					</border>
+				</reuter>
+			</grid>
+			<R>6378137.0</R>
+			<inverseFlattening>298.2572221010</inverseFlattening>
+			<sortPoints>0</sortPoints>
+		</Grid2File>
+	</programme>
+</groops>

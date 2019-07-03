@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<uint label="numberColumns">xxx_col_count</uint>
+		<uint label="numberRows">xxx_row_count</uint>
+		<filename label="inputfileAscii">xxx_input_ascii</filename>
+		<filename label="outputfileMatrix">xxx_output_matrix</filename>
+	</global>
+	<programme comment="inputfileAscii">
+		<Ascii2Matrix>
+			<inputfileAscii link="inputfileAscii"/>
+			<outputfileMatrix link="outputfileMatrix"/>
+			<numberRows link="numberRows"/>
+			<numberColumns link="numberColumns"/>
+		</Ascii2Matrix>
+	</programme>
+</groops>

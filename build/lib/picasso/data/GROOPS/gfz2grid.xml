@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<time label="mjd">xxx_mjd</time>
+		<filename label="inputfileGrid">xxx_grid_file</filename>
+		<filename label="outputfileGriddedData">xxx_output_grid</filename>
+		<filename label="groopsPath">xxx_groops_path</filename>
+		<gridType label="grid">
+			<file>
+				<inputfileGrid link="inputfileGrid"/>
+			</file>
+		</gridType>
+		<uint label="minDegree">xxx_min_degree</uint>
+		<uint label="maxDegree">xxx_max_degree</uint>
+		<double label="gaussRadius">xxx_gauss</double>
+		<kernelType label="kernel">
+			<waterHeight>
+				<density>1025</density>
+				<inputfileLoadingLoveNumber>{groopsPath}/IFG/raw/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+			</waterHeight>
+		</kernelType>
+		<gravityfieldType label="gravityfield">
+			<potentialCoefficients>
+				<inputfilePotentialCoefficients>{groopsPath}/GFZ/GFZ_RL05_n90_{mjd:%y-%m}.gfc</inputfilePotentialCoefficients>
+				<minDegree link="minDegree"/>
+				<maxDegree link="maxDegree"/>
+				<factor>1.0</factor>
+				<setSigmasToZero>0</setSigmasToZero>
+			</potentialCoefficients>
+		</gravityfieldType>
+		<gravityfieldType label="gravityfieldConstant">
+			<potentialCoefficients>
+				<inputfilePotentialCoefficients>{groopsPath}/GOCO/GOCO05S/GOCO05s.static.gfc</inputfilePotentialCoefficients>
+				<minDegree link="minDegree"/>
+				<maxDegree link="maxDegree"/>
+				<factor>-1.0</factor>
+				<setSigmasToZero>0</setSigmasToZero>
+			</potentialCoefficients>
+		</gravityfieldType>
+	</global>
+	<programme comment="ICE6.txt">
+		<Gravityfield2GriddedData>
+			<outputfileGriddedData link="outputfileGriddedData"/>
+			<grid link="grid"/>
+			<kernel>
+				<filterGauss>
+					<kernel link="kernel"/>
+					<radius link="gaussRadius"/>
+				</filterGauss>
+			</kernel>
+			<gravityfield link="gravityfield"/>
+			<gravityfield link="gravityfieldConstant"/>
+			<convertToHarmonics>1</convertToHarmonics>
+			<time link="mjd"/>
+			<R>6378137.0</R>
+			<inverseFlattening>298.2572221010</inverseFlattening>
+			<initRandom>0</initRandom>
+		</Gravityfield2GriddedData>
+	</programme>
+</groops>

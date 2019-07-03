@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<groops>
+	<global>
+		<filename label="groopsPath">xxx_groops_path</filename>
+		<double label="gaussRadius">xxx_gauss</double>
+		<kernelType label="kernelDensity">
+			<density>
+				<inputfileLoadingLoveNumber>{groopsPath}/IFG/raw/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+			</density>
+		</kernelType>
+		<kernelType label="kernel">
+			<filterGauss>
+				<kernel link="kernelDensity"/>
+				<radius link="gaussRadius"/>
+			</filterGauss>
+		</kernelType>
+		<filename label="outputfilePotentialCoefficients">xxx_gfc_file</filename>
+		<filename label="inputfileGriddedData">xxx_input_gridded_data</filename>
+		<filename label="outputfileGriddedData">xxx_output_grid</filename>
+		<filename label="inputfileGrid">xxx_input_grid</filename>
+		<uint label="minDegree">xxx_min_degree</uint>
+		<uint label="maxDegree">xxx_max_degree</uint>
+		<kernelType label="kernelWaterHeight">
+			<waterHeight>
+				<density>1025</density>
+				<inputfileLoadingLoveNumber>{groopsPath}/IFG/raw/models/load_love_currently_used_in_xml_files.txt</inputfileLoadingLoveNumber>
+			</waterHeight>
+		</kernelType>
+	</global>
+	<programme comment="outputfilePotentialCoefficients">
+		<GriddedData2PotentialCoefficients>
+			<outputfilePotentialCoefficients link="outputfilePotentialCoefficients"/>
+			<inputfileGriddedData link="inputfileGriddedData"/>
+			<value>data0</value>
+			<weight>area</weight>
+			<kernel link="kernelWaterHeight"/>
+			<minDegree link="minDegree"/>
+			<maxDegree link="maxDegree"/>
+			<GM>3.986004415e+14</GM>
+			<R>6378136.3</R>
+			<leastSquares>1</leastSquares>
+		</GriddedData2PotentialCoefficients>
+	</programme>
+	<programme comment="outputfileGriddedData">
+		<Gravityfield2GriddedData>
+			<outputfileGriddedData link="outputfileGriddedData"/>
+			<grid>
+				<file>
+					<inputfileGrid link="inputfileGrid"/>
+				</file>
+			</grid>
+			<kernel link="kernelWaterHeight"/>
+			<gravityfield>
+				<potentialCoefficients>
+					<inputfilePotentialCoefficients link="outputfilePotentialCoefficients"/>
+					<minDegree link="minDegree"/>
+					<maxDegree link="maxDegree"/>
+					<factor>1.0</factor>
+					<setSigmasToZero>0</setSigmasToZero>
+				</potentialCoefficients>
+			</gravityfield>
+			<convertToHarmonics>1</convertToHarmonics>
+			<R>6378137.0</R>
+			<inverseFlattening>298.2572221010</inverseFlattening>
+		</Gravityfield2GriddedData>
+	</programme>
+</groops>

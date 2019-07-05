@@ -8,7 +8,7 @@ Created on Wed Apr 18 13:53:28 2018
 import os
 import numpy as np
 import csv
-from iwf_geodesy.dates_and_time import date_functions
+from picasso.utils.dates_and_time import date_functions
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import QDate, QTime
 import logging

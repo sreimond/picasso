@@ -21,7 +21,7 @@ def make_grid_file(groops_bin,grid_file,lon,lat,h,area,*args,**kwargs):
     if args_count>5: # max. 5 args allowed
         args_count=5
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/ascii2grid_args%d.xml' % args_count)   
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/ascii2grid_args%d.xml' % args_count)   
     # create and fill output array
     output_ascii = np.ones((point_count,4+args_count)) * np.nan     
     output_ascii[:,0] = lon
@@ -60,11 +60,11 @@ def build_pointmass_normals(groops_bin,mjd_start,mjd_end,grid_file,output_path,l
     gridi = np.genfromtxt(grid_file,skip_header=2)
     gridi = np.array(gridi,ndmin=2)
     point_count = gridi.shape[0]    
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_only.xml')
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_only.xml')
     if compute_goce and goce_only:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_goce_only.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_goce_only.xml')
     elif compute_goce:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_goce.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_goce.xml')
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"
@@ -99,9 +99,9 @@ def build_pointmass_normals_ga(groops_bin,mjd_start,mjd_end,grid_file,output_pat
     gridi = np.genfromtxt(grid_file,skip_header=2)
     gridi = np.array(gridi,ndmin=2)
     point_count = gridi.shape[0]
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_only_ga.xml')
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_only_ga.xml')
     if love_enabled:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_only_love_enabled_ga.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_only_love_enabled_ga.xml')
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"
@@ -135,11 +135,11 @@ def combine_eliminate_solve_pointmass_normals(groops_bin,mjd_start,mjd_end,grid_
     gridi = np.genfromtxt(grid_file,skip_header=2)
     gridi = np.array(gridi,ndmin=2)
     point_count = gridi.shape[0]
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals_grace_only.xml')
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals_grace_only.xml')
     if compute_goce and goce_only:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals_goce_only.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals_goce_only.xml')
     elif compute_goce:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/combine_eliminate_solve_pointmass_normals.xml')
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"
@@ -187,7 +187,7 @@ def eliminate_solve_pointmass_normals_ga(groops_bin,mjd_start,mjd_end,grid_file,
     gridi = np.genfromtxt(grid_file,skip_header=2)
     gridi = np.array(gridi,ndmin=2)
     point_count = gridi.shape[0]
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/eliminate_solve_pointmass_normals_grace_only_ga.xml')
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/eliminate_solve_pointmass_normals_grace_only_ga.xml')
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"
@@ -227,7 +227,7 @@ def make_matrix_file(groops_bin,matrix_file,array):
     col_count = array.shape[1]
     ele_count = row_count * col_count
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/ascii2matrix.xml')   
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/ascii2matrix.xml')   
     # create and fill output array    
     output_ascii = np.zeros((ele_count,3))
     ix = -1
@@ -255,7 +255,7 @@ def make_matrix_file(groops_bin,matrix_file,array):
 
 def compute_goco_grid(groops_bin,input_grid,output_grid,mjd):
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/goco2grid.xml')   
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/goco2grid.xml')   
     # call groops
     sys_str = ""
     sys_str += groops_bin
@@ -281,7 +281,7 @@ def compute_goco_grid(groops_bin,input_grid,output_grid,mjd):
     
 def make_grid_in_polygon_file(groops_bin,output_grid,polygon_file):
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon.xml')  
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon.xml')  
     # call groops
     sys_str = ""
     sys_str += groops_bin
@@ -299,25 +299,25 @@ def make_specific_grid_in_polygon_file(groops_bin,output_grid,polygon_file,grid_
     sys_str += " -g inputfilePolygon=%s" % polygon_file
     # determine xml file location
     if grid_type==0 or grid_type=='geographical':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_geographical.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_geographical.xml')
         sys_str += " -g delta=%.10f" % grid_resolution
     elif grid_type==1 or grid_type=='triangleVertex':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_triangleVertex.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_triangleVertex.xml')
         sys_str += " -g level=%d" % grid_resolution
     elif grid_type==2 or grid_type=='triangleCenter':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_triangleCenter.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_triangleCenter.xml')
         sys_str += " -g level=%d" % grid_resolution
     elif grid_type==3 or grid_type=='gauss':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_gauss.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_gauss.xml')
         sys_str += " -g parallelsCount=%d" % grid_resolution
     elif grid_type==4 or grid_type=='reuter':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_reuter.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_reuter.xml')
         sys_str += " -g gamma=%d" % grid_resolution
     elif grid_type==5 or grid_type=='corput':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_corput.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_corput.xml')
         sys_str += " -g globalPointsCount=%d" % grid_resolution
     elif grid_type==6 or grid_type=='driscoll':
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid_in_polygon_driscoll.xml') 
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid_in_polygon_driscoll.xml') 
         sys_str += " -g dimension=%d" % grid_resolution
     # call groops
     sys_str += " %s 2>/dev/null" %(xml_file)
@@ -326,7 +326,7 @@ def make_specific_grid_in_polygon_file(groops_bin,output_grid,polygon_file,grid_
         
 def compute_gfc_grid(groops_bin,input_grid,output_grid,mjd,min_degree,max_degree,gauss,data_center='itsg'):
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/%s2grid.xml' % data_center)  
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/%s2grid.xml' % data_center)  
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"
@@ -356,7 +356,7 @@ def compute_gfc_grid(groops_bin,input_grid,output_grid,mjd,min_degree,max_degree
 
 def compute_grid_to_gfc_to_grid(groops_bin,input_gridded_data,output_grid,input_grid,gauss,min_degree=0,max_degree=60):
     # determine xml file location
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/grid2gfc2grid.xml')  
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/grid2gfc2grid.xml')  
     # system string template
     sys_str = ""
     sys_str += "xxx_grops_bin"

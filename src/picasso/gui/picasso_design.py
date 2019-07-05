@@ -10,13 +10,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 # inserted via script (begin)
 import pkg_resources
-png_of_alpha = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_alpha.png')
-png_of_alphaxTx = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_alphaxTx.png')
-png_of_condN = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_condN.png')
-png_of_ePe = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_ePe.png')
-png_of_ePealphaxTx = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_ePealphaxTx.png')
-png_of_sigmaxTsigmax = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_sigmaxTsigmax.png')
-png_of_xTx = pkg_resources.resource_filename('picasso.src.picasso.data', 'gui_data/of_xTx.png')
+png_of_alpha = pkg_resources.resource_filename('picasso.data', 'gui_data/of_alpha.png')
+png_of_alphaxTx = pkg_resources.resource_filename('picasso.data', 'gui_data/of_alphaxTx.png')
+png_of_condN = pkg_resources.resource_filename('picasso.data', 'gui_data/of_condN.png')
+png_of_ePe = pkg_resources.resource_filename('picasso.data', 'gui_data/of_ePe.png')
+png_of_ePealphaxTx = pkg_resources.resource_filename('picasso.data', 'gui_data/of_ePealphaxTx.png')
+png_of_sigmaxTsigmax = pkg_resources.resource_filename('picasso.data', 'gui_data/of_sigmaxTsigmax.png')
+png_of_xTx = pkg_resources.resource_filename('picasso.data', 'gui_data/of_xTx.png')
 # inserted via script (end)
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

@@ -85,13 +85,13 @@ def rgi_region_id_to_rgi_data_name(rgi_id):
 
 def rgi_region_id_to_polygon(rgi_id):
     data_name = rgi_region_id_to_rgi_data_name(rgi_id)    
-    polygon_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'polygons/%s.txt' % data_name)
+    polygon_file = pkg_resources.resource_filename('picasso.data', 'polygons/%s.txt' % data_name)
     polygon = pof.read_polygon_file( polygon_file )
     return polygon
 
 def rgi_region_id_to_glacier_attributes(rgi_id):
     data_name = rgi_region_id_to_rgi_data_name(rgi_id)
-    attributes_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'RGI/%s.csv' % data_name)
+    attributes_file = pkg_resources.resource_filename('picasso.data', 'RGI/%s.csv' % data_name)
     with open(attributes_file) as File:  
         reader = csv.reader(File,delimiter=',')
         next(reader)
@@ -106,7 +106,7 @@ def rgi_region_id_to_glacier_attributes(rgi_id):
 
 def rgi_region_id_to_grid(rgi_id,ignore_zeros=True):
     data_name = rgi_region_id_to_rgi_data_name(rgi_id)
-    grid_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'RGI/%s.grid' % data_name)
+    grid_file = pkg_resources.resource_filename('picasso.data', 'RGI/%s.grid' % data_name)
     grid = np.array(np.genfromtxt(grid_file,skip_header=2),ndmin=2)
     if ignore_zeros:
         ix = np.where(grid[:,3]>1e-6)
@@ -142,7 +142,7 @@ def glacier_attributes_in_polygon(polygon):
     return grid[:,0], grid[:,1], grid[:,3]    
 
 def rgi_grid_in_polygon(polygon,ignore_zeros=True):
-    grid_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'RGI/00_rgi60_30-30grid_ascii.txt')
+    grid_file = pkg_resources.resource_filename('picasso.data', 'RGI/00_rgi60_30-30grid_ascii.txt')
     grid = np.array(np.genfromtxt(grid_file,skip_header=4),ndmin=2)
     if ignore_zeros:
         ix = np.where(grid[:,3]>1e-6)

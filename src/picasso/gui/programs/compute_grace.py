@@ -689,11 +689,11 @@ def _build_pointmass_normals_leo(ui,goce_only=False):
     if ui.cb_id079.isChecked():
         groops_bin = ui.le_id220.text()
     # xml file
-    xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_only.xml')
+    xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_only.xml')
     if compute_goce and goce_only:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_goce_only.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_goce_only.xml')
     elif compute_goce:
-        xml_file = pkg_resources.resource_filename('picasso.src.picasso.data', 'GROOPS/build_pointmass_normals_grace_goce.xml')
+        xml_file = pkg_resources.resource_filename('picasso.data', 'GROOPS/build_pointmass_normals_grace_goce.xml')
     logging.info('XML file is: %s',xml_file)
     # copy xml file
     xml_file_tmp = os.path.join(tmp_dir,'tmp.xml')

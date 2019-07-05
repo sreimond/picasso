@@ -51,7 +51,7 @@ def compute_corrections(ui):
     global pip_ix
     if ui.rb_id050.isChecked():
         polygon = compute_grace._region_settings(ui)
-        reference_grid = pkg_resources.resource_filename('picasso.src.picasso.data', 'grids/geographical_30-30.grid')
+        reference_grid = pkg_resources.resource_filename('picasso.data', 'grids/geographical_30-30.grid')
         grid = np.array(np.genfromtxt(reference_grid,skip_header=2),ndmin=2)
         pip_ix = list(range(grid.shape[0]))
         if polygon is not None:

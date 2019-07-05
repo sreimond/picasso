@@ -20,7 +20,7 @@ def regularization(normals_path,vce=True):
     return LS
 
 def regularization_matlab(normals_path,method='lcurve'):
-    matlab_path = pkg_resources.resource_filename('picasso.src.picasso.data', 'MATLAB')
+    matlab_path = pkg_resources.resource_filename('picasso.data', 'MATLAB')
     LS = groops_files.read_groops_normals(normals_path)
     LS = _no_regularization(LS)
     sys_str = "matlab -nodisplay -r \""

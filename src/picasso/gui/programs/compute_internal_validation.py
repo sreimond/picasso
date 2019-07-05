@@ -65,7 +65,7 @@ def compute_internal_validation(ui):
     if ui.rb_id057.isChecked():
         polygon = compute_grace._region_settings(ui)
         lon,lat,area = dfr.rgi_grid_in_polygon(polygon,ignore_zeros=ui.cb_id075.isChecked())
-        grid_file_global = pkg_resources.resource_filename('picasso.src.picasso.data', 'grids/geographical_30-30.grid')
+        grid_file_global = pkg_resources.resource_filename('picasso.data', 'grids/geographical_30-30.grid')
         lon0,lat0,h0,area0 = np.genfromtxt(grid_file_global,skip_header=2,unpack=True)
         area_i = griddata((lon0,lat0), (area0), (lon, lat), method='nearest')
         groops_interface.make_grid_file(groops_bin,grid_file,lon,lat,0,area_i)
@@ -173,7 +173,7 @@ def _compute_M1_syn_grids(ui):
     project_dir = str(ui.le_id002.text())
     internal_validation_path = os.path.join(project_dir,project_name,'validation','internal')
     # global grid
-    grid_file_global = pkg_resources.resource_filename('picasso.src.picasso.data', 'grids/geographical_30-30.grid')
+    grid_file_global = pkg_resources.resource_filename('picasso.data', 'grids/geographical_30-30.grid')
     grid0 = np.array(np.genfromtxt(grid_file_global,skip_header=2),ndmin=2)
     # indices
     if (ui.rb_id057.isChecked() or ui.rb_id100.isChecked()):
@@ -290,7 +290,7 @@ def _compute_gfc2grid(ui,groops_bin,input_grid,output_grid,mjd,min_degree,max_de
         
 def _compute_buffer_grid(ui,lon0,lat0):
     buffer_size_km = ui.dsb_id015.value()
-    grid_file_global = pkg_resources.resource_filename('picasso.src.picasso.data', 'grids/geographical_30-30.grid')
+    grid_file_global = pkg_resources.resource_filename('picasso.data', 'grids/geographical_30-30.grid')
     lon,lat,h,area = np.genfromtxt(grid_file_global,skip_header=2,unpack=True)
     central_point = (0,0)
     u,v = map_projections.azimuthal_equidistant(lon,lat,central_point=central_point)

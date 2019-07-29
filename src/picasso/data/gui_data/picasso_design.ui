@@ -86,7 +86,7 @@
               <item>
                <widget class="QLineEdit" name="le_id002">
                 <property name="text">
-                 <string>/home/sreimond/Downloads/</string>
+                 <string>/home/username/Downloads/</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter full path</string>
@@ -251,7 +251,7 @@
               <item>
                <widget class="QLineEdit" name="le_id223">
                 <property name="text">
-                 <string>/home/sreimond/work/data/</string>
+                 <string>/home/username/work/data/</string>
                 </property>
                </widget>
               </item>
@@ -302,7 +302,7 @@
               <item>
                <widget class="QLineEdit" name="le_id218">
                 <property name="text">
-                 <string>/home/sreimond/groops/groops/bin/groops</string>
+                 <string>/home/username/groops/groops/bin/groops</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter full path</string>
@@ -349,7 +349,7 @@
               <item row="2" column="4">
                <widget class="QLineEdit" name="le_id003">
                 <property name="text">
-                 <string>stefan.reimond@oeaw.ac.at</string>
+                 <string>user@example.com</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter email address</string>
@@ -446,7 +446,7 @@
               <item row="3" column="4">
                <widget class="QLineEdit" name="le_id219">
                 <property name="text">
-                 <string>/home/sreimond/data/scenario/projects/</string>
+                 <string>/home/username/data/scenario/projects/</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter full path</string>
@@ -456,7 +456,7 @@
               <item row="4" column="4">
                <widget class="QLineEdit" name="le_id220">
                 <property name="text">
-                 <string>/home/sreimond/data/groops/2017/bin/groops</string>
+                 <string>/home/username/data/groops/2017/bin/groops</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter full path</string>
@@ -589,7 +589,7 @@
               <item row="5" column="4">
                <widget class="QLineEdit" name="le_id222">
                 <property name="text">
-                 <string>/home/sreimond/data/groops/2017/bin/pgroops</string>
+                 <string>/home/username/data/groops/2017/bin/pgroops</string>
                 </property>
                 <property name="placeholderText">
                  <string>Enter full path</string>
@@ -606,7 +606,7 @@
               <item row="6" column="4">
                <widget class="QLineEdit" name="le_id224">
                 <property name="text">
-                 <string>/home/sreimond/data/data/</string>
+                 <string>/home/username/data/data/</string>
                 </property>
                </widget>
               </item>
@@ -620,7 +620,7 @@
               <item row="6" column="1">
                <widget class="QLineEdit" name="le_id226">
                 <property name="text">
-                 <string>/scratch/sreimond/myrun/</string>
+                 <string>/scratch/username/myrun/</string>
                 </property>
                </widget>
               </item>
